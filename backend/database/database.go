@@ -4,7 +4,7 @@ import (
 	"log"
 	"mis-system/models"
 
-	"gorm.io/driver/sqlite"
+	"github.com/glebarez/sqlite" // Pure Go SQLite driver
 	"gorm.io/gorm"
 )
 
@@ -18,7 +18,11 @@ func ConnectDatabase() {
 	}
 
 	// Auto migrate the database
-	err = database.AutoMigrate(&models.User{})
+	err = database.AutoMigrate(
+		&models.User{},
+		&models.Session{},
+		&models.AuthAudit{},
+	)
 	if err != nil {
 		log.Fatalf("Failed to migrate database: %v", err)
 	}

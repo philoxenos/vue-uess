@@ -35,6 +35,13 @@ func main() {
 		{
 			auth.POST("/register", handlers.RegisterUser)
 			auth.POST("/login", handlers.LoginUser)
+			auth.POST("/google", handlers.GoogleAuth)
+			auth.GET("/google/login", handlers.GoogleLogin)
+			auth.GET("/google/callback", handlers.GoogleCallback)
+			auth.POST("/refresh", handlers.RefreshToken)
+			auth.POST("/logout", handlers.Logout)
+			auth.POST("/forgot-password", handlers.ForgotPassword)
+			auth.POST("/reset-password", handlers.ResetPassword)
 		}
 
 		// Protected routes
@@ -49,6 +56,9 @@ func main() {
 				users.PUT("/:id", handlers.UpdateUser)
 				users.DELETE("/:id", handlers.DeleteUser)
 			}
+
+			// Me endpoint for getting current user info
+			protected.GET("/me", handlers.GetCurrentUser)
 		}
 	}
 

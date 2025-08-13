@@ -1,8 +1,8 @@
 # Run Backend
-Start-Process -NoNewWindow powershell -ArgumentList "-Command cd $PSScriptRoot\backend; go run main.go"
+Start-Process -NoNewWindow powershell -ArgumentList "-Command", "cd $PSScriptRoot\backend; `$env:CGO_ENABLED=1; go run main.go"
 
 # Run Frontend
-Start-Process -NoNewWindow powershell -ArgumentList "-Command cd $PSScriptRoot\frontend; npm run dev"
+Start-Process -NoNewWindow powershell -ArgumentList "-Command", "cd $PSScriptRoot\frontend; npm run dev"
 
 Write-Host "Starting servers..."
 Write-Host "Backend API server running on http://localhost:8080"
